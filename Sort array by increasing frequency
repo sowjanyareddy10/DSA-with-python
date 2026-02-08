@@ -1,0 +1,10 @@
+class Solution:
+    def frequencySort(self, nums: List[int]) -> List[int]:   
+        d=Counter(nums)
+        u_d =  sorted(d.items(),key = lambda x:(x[1],-x[0]))
+        result = []
+        for i,j in u_d:
+            for k in range(j):
+                result.append(i)
+        return result    
+        
