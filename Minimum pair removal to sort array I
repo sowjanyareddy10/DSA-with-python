@@ -1,0 +1,23 @@
+class Solution:
+    def minimumPairRemoval(self, nums: List[int]) -> int:
+        res=0
+        ordered=False
+        while not ordered:
+            ordered=True
+            minind=-1
+            minval=float("inf")
+            for i in range(len(nums)-1):
+                if nums[i+1]+nums[i]<minval:
+                    minval=nums[i+1]+nums[i]
+                    minind=i
+                if nums[i]>nums[i+1]:
+                    ordered=False
+            if not ordered:
+                nums=nums[0:minind]+[minval]+nums[minind+2:]
+                res+=1
+        return res
+
+
+
+
+        
