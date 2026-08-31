@@ -1,0 +1,21 @@
+class Solution:
+    def maxFrequency(self, nums: List[int], k: int, numOperations: int) -> int:
+        freq=defaultdict(int)
+        events=defaultdict(int)
+        for x in nums:
+            freq[x]+=1
+            events[x-k]+=1
+            events[x+k+1]-=1
+        active=0
+        ans=0
+        points=sorted(set(events.keys())|set(freq.keys()))
+        for x in points:
+            active+=events[x]
+            original=freq.get(x,0)
+            usable=max(0,active-original)
+            total=original+min(numOperations,usable)
+            ans=max(ans,total)
+        return ans
+    
+ 
+ 
